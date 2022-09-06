@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     margin-top: 40px;
     background-color: #181818;
+    max-width: 1000px;
 `
 
 export const ChannelCard = styled.div`
@@ -12,7 +13,6 @@ export const ChannelCard = styled.div`
     font-size: 18px;
     color: #FFFFFF;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     padding-left: 200px;
 
@@ -25,7 +25,7 @@ export const ChannelCard = styled.div`
         padding: 10px 16px;
         border: none;
         font-weight: bold;
-        margin-left: auto;
+        margin-left: 100px;
         margin-right: 200px;
     }
 `

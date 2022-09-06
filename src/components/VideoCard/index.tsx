@@ -7,6 +7,7 @@ type TVideoCard = {
 
 export const VideoCard = ({ item }: TVideoCard) => {
 
+
     return (
         <C.Container>
             {item.id.kind === 'youtube#channel' && (

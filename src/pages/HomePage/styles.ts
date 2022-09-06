@@ -8,7 +8,6 @@ type TSearchResults = TContainer
 export const Container = styled.div<TContainer>`
     background-color: #212121;
     min-height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: ${props => props.haveResults ? 'top' : 'center'};
@@ -21,6 +20,12 @@ export const Container = styled.div<TContainer>`
 const ContainerAnimation = keyframes`
     0% { padding: 400px 0px }
     100% { padding: 100px 0px  }
+`
+
+export const FlexContainer = styled.div`
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 `
 
 export const FormSearch = styled.form`
@@ -57,10 +62,40 @@ export const ButtonSearch = styled.button`
     }
 `
 
+export const ErroText = styled.h2`
+    color: white;
+    padding: 20px;
+`
+
 export const SearchResults = styled.div<TSearchResults>`
     display: ${props => props.haveResults ? 'block' : 'none'};
     margin-top: 100px;
     background-color: #181818;
     width: 80%;
-    padding-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`
+
+export const PaginationWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 25px;
+    margin-top: 40px;
+    margin: 0 auto;
+    
+    padding-bottom: 50px;
+
+    & > button {
+        padding: 15px;
+        clip-path: circle();
+        font-size: 40px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin: 0 20px;
+    }
 `
