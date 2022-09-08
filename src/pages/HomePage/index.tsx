@@ -24,8 +24,8 @@ export const HomePage = () => {
 
 
     useEffect(() => {
-        setIsLoading(true)
-        if(searchParams) {
+        if(busca !== '') {
+            setIsLoading(true)
             ApiServices.searchVideo(busca)
             .then((response) => {
                 setItems([])
