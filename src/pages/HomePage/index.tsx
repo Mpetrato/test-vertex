@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react'
 
 import { VideoCard } from '../../components/VideoCard';
-import { ISearchResult, Item } from '../../types';
+import { ISearchResult, Item } from '../../types/VideoTypes';
 import { ApiServices } from '../../services/api';
 import * as C from './styles'
 

@@ -24,8 +24,9 @@ const ContainerAnimation = keyframes`
 
 export const FlexContainer = styled.div`
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
+    width: 100%;
 `
 
 export const FormSearch = styled.form`
@@ -81,12 +82,13 @@ export const SearchResults = styled.div<TSearchResults>`
 export const PaginationWrapper = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
     font-size: 25px;
     margin-top: 40px;
     margin: 0 auto;
     
-    padding-bottom: 50px;
+    padding: 50px 0;
 
     & > button {
         padding: 15px;
