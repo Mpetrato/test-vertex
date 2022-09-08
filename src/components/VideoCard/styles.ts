@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     margin-top: 40px;
+    padding-bottom: 20px;
     background-color: #181818;
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 `
 
 export const ChannelCard = styled.div`
@@ -54,7 +56,6 @@ export const VideoCard = styled.div`
     flex-direction: column;
     align-items: flex-start;
     padding: 0 20px;
-    cursor: pointer;
 
 
     & > img {

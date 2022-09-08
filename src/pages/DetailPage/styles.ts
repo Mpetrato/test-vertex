@@ -51,6 +51,10 @@ export const DetailsContainer = styled.div`
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    @media (min-width: 1200px) {
+        justify-content: flex-start;
+    }
 `
 
 export const DetailsWrapper = styled.div`
@@ -64,8 +68,23 @@ export const DetailsWrapper = styled.div`
         color: rgba(255, 255, 255, 0.4);
         font-size: 12px;
     }
+
+    @media (min-width: 1200px) {
+        margin-right: 30px;
+    }
 `
 export const DescriptionWrapper = styled.div`
     color: white;
     padding: 20px;
+`
+
+export const BackButton = styled.button`
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 `

@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react'
-import {  useParams } from 'react-router-dom'
+import {  useNavigate, useParams } from 'react-router-dom'
 import { ApiServices } from '../../services/api'
 import { TDetails } from '../../types/DetailsTypes'
 import * as C from './styles'
 
 export const DetailPage = () => {
-    const params = useParams()
+    const params = useParams();
+    const navigate = useNavigate();
     const { id } = params
 
     const [isLoading, setIsLoading] = useState(true);
-
     const [itemDetails, setItemDetails] = useState<TDetails>({} as TDetails);
 
     useEffect(() => {
         ApiServices.getVideoDetails(id!)
         .then(response => {
             setItemDetails(response)
-            console.log(response)
             setIsLoading(false)
         })
     }, [])
@@ -27,6 +26,7 @@ export const DetailPage = () => {
         <>
             {!isLoading && (
                 <C.Container>
+                    <C.BackButton onClick={(e) => navigate(-1)}>Voltar</C.BackButton>
                     <C.ImgWrapper>
                         <iframe 
                             src={`https://www.youtube.com/embed/${itemDetails.items[0].id}`}

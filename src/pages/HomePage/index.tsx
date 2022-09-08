@@ -1,27 +1,48 @@
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useMemo, useEffect } from 'react'
 
 import { VideoCard } from '../../components/VideoCard';
 import { ISearchResult, Item } from '../../types/VideoTypes';
 import { ApiServices } from '../../services/api';
 import * as C from './styles'
+import { useSearchParams } from 'react-router-dom';
 
 
 
 export const HomePage = () => {
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const busca = useMemo(() => {
+        return searchParams.get('busca') || '';
+    }, [searchParams]);
+
     const [data, setData] = useState<ISearchResult>({} as ISearchResult);
     const [items, setItems] = useState<Item[]>([]);
-    const [termoDePesquisa, setTermoDePesquisa] = useState('');
     const [haveResults, setHaveResults] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1)
 
+
+    useEffect(() => {
+        setIsLoading(true)
+        if(searchParams) {
+            ApiServices.searchVideo(busca)
+            .then((response) => {
+                setItems([])
+                setHaveResults(true)
+                setItems(response.items)
+                setData(response)
+                setIsLoading(false)
+            })
+        }
+    }, [])
     
     const handleSearchVideo = async (e: FormEvent) => {
         e.preventDefault();
         setItems([])
         setIsLoading(true)
         setHaveResults(true)
-        const response = await ApiServices.searchVideo(termoDePesquisa)
+        const response = await ApiServices.searchVideo(busca)
 
         setItems(response.items)
         setData(response)
@@ -32,7 +53,7 @@ export const HomePage = () => {
         setIsLoading(true)
         setHaveResults(true)
 
-        const response = await ApiServices.nextPage(data.nextPageToken, termoDePesquisa)
+        const response = await ApiServices.nextPage(data.nextPageToken, busca)
         
         setItems(response.items)
         setData(response)
@@ -44,7 +65,7 @@ export const HomePage = () => {
         setIsLoading(true)
         setHaveResults(true)
 
-        const response = await ApiServices.nextPage(data.prevPageToken!, termoDePesquisa)
+        const response = await ApiServices.nextPage(data.prevPageToken!, busca)
     
         setItems(response.items)
         setData(response)
@@ -58,8 +79,8 @@ export const HomePage = () => {
             <C.FormSearch >
                 <C.InputSearch 
                     placeholder='Pesquisar' 
-                    value={termoDePesquisa}
-                    onChange={e => setTermoDePesquisa(e.target.value)}
+                    value={busca}
+                    onChange={e => setSearchParams({ busca: e.target.value}, {replace: true})}
                 />
                 <C.ButtonSearch onClick={(e) => handleSearchVideo(e)}>
                     Buscar
