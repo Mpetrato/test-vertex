@@ -32,7 +32,7 @@ Como instalar
 
 1. Abra o terminal
 2. git clone
-3. cd codeleap-app
+3. cd test-vertex
 
 - Instale as dependencias e execute:
 
